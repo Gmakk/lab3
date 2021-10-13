@@ -35,9 +35,9 @@ int getPositive(T& value) {//ввод только положительных значений
 }
 
 int dialog(const char* msgs[], int N);
-int D_AddContact(Plate* plate);
-int D_Info(Plate* plate);
-int D_Correct(Plate* plate);
-int D_AddLink(Plate* plate);
-int D_Group(Plate* plate);
-int D_Length(Plate* plate);
+int D_AddContact(Plate& plate);
+int D_Info(Plate& plate);
+int D_Correct(Plate& plate);
+int D_AddLink(Plate& plate);
+int D_Group(Plate& plate);
+int D_Length(Plate& plate);

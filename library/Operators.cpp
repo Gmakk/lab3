@@ -1,10 +1,6 @@
 #include "Plate.h"
 
 //унарные
-const Plate& operator+(const Plate& plate) {
-	return plate;
-}
-
 Plate& operator++(Plate& plate) {
 	if (plate.size + 1 > Size)
 		throw std::exception("Not enough space\n");
@@ -72,10 +68,23 @@ Plate& operator-=(Plate& left, const int right) {
 		throw std::exception("Not enough elements\n");
 	for (int i = 0; i < right; i++)
 		left.size--;
+	return left;
+}
+
+bool operator!=(const Plate& left, const Plate& right) {
+	return left.size != right.size;
 }
 
 bool operator==(const Plate& left, const Plate& right) {
 	return left.size == right.size;
+}
+
+bool operator==(const Contact& left, const Contact& right) {
+	//возможна связь
+	if (left.number != INT_MAX && right.number != INT_MAX && left.type != right.type)
+		return true;
+	//нет связи
+	return false;
 }
 
 bool operator<(const Plate& left, const Plate& right) {

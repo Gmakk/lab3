@@ -1,5 +1,17 @@
 #include "Plate.h"
 
+Plate::Plate(Plate& origin){
+	for (int i = 0; i < Size; i++) {
+		arr[i].number = INT_MAX;
+	}
+	this->size = origin.size;
+	Contact* ptr_arr1 = origin.arr;
+	Contact* ptr_arr2 = this->arr;
+	Contact* arr_end = ptr_arr1 + size;
+	for (; ptr_arr1 != arr_end; ++ptr_arr1, ++ptr_arr2)
+		*ptr_arr2 = *ptr_arr1;
+}
+
 Plate::Plate(int x, int y, int type) :size(1) {//конструктор, создающий только 1 контакт на плате
 	if (type != 0 && type != 1)
 		throw std::exception("Incorrect type\n");
@@ -18,6 +30,9 @@ Plate::Plate(int size, Contact arr[Size]) {//переденный массив помещается в поле
 	Contact* arr_end = ptr_arr1 + size;
 	for (; ptr_arr1 != arr_end; ++ptr_arr1, ++ptr_arr2)
 		*ptr_arr2 = *ptr_arr1;
+	for (int i = 0; i < Size; i++) {
+		arr[i].number = INT_MAX;
+	}
 }
 
 int Plate::addContact(int x, int y, int type) {
@@ -73,7 +88,6 @@ int Plate::correctness(int number) const {
 		return 1;
 	//некорректная связь
 	return -1;
-
 }
 
 int Plate::addLink(int number1, int number2) {//с проверкой корректности
@@ -109,7 +123,7 @@ int Plate::addLink(int number1, int number2) {//с проверкой корректности
 	return 1;
 }
 
-void Plate::showGroup(int type) const {
+void Plate::showGroup(bool type) const {
 	for (int i = 0; i < size; i++) {
 		if (arr[i].type == type) {
 			std::cout << "Number: " << i << "	Type: ";

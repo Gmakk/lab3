@@ -1,6 +1,18 @@
 #include "pch.h"
 #include "Plate.h"
-
+TEST(Constructor, Copy) {
+	Contact array[3] = {
+		{0,5,6,INT_MAX},
+		{0,-5,-5,2},
+		{1,50,50,1}
+	};
+	Plate plate_origin(3, array);
+	Plate plate(plate_origin);
+	EXPECT_EQ(plate.getArr()[0].x, 5);
+	EXPECT_EQ(plate.getArr()[0].y, 6);
+	EXPECT_EQ(plate.getArr()[0].type, 0);
+	EXPECT_EQ(plate.getArr()[0].number, INT_MAX);
+}
 TEST(Constructor, OneElement) {
 	Plate plate(5, 10, 0);
 	EXPECT_EQ(plate.getArr()[0].x, 5);

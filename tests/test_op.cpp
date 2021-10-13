@@ -25,7 +25,7 @@ TEST(PlatePlusPlate, correct) {
 	EXPECT_EQ(result->getArr()[4].number, 7);
 }
 
-TEST(Equating){
+TEST(Equating,Array){
 	Contact array[3] = {
 			{0,5,6,INT_MAX},
 			{0,-5,-5,2},
@@ -39,7 +39,7 @@ TEST(Equating){
 	EXPECT_EQ(plate1.getArr()[1].number, 2);
 }
 
-TEST(Index) {
+TEST(Index,FirstElement) {
 	Plate plate(5, 7, 0);
 	EXPECT_EQ(plate[0].x, 5);
 	EXPECT_EQ(plate[0].y, 7);
@@ -99,6 +99,17 @@ TEST(MinusEqually, incorrect) {
 	catch (std::exception ex) {
 		ASSERT_STREQ(ex.what(), "Not enough elements\n");
 	}
+}
+
+TEST(Inequality, correct) {
+	Plate plate1, plate2;
+	ASSERT_FALSE(plate1 != plate2);
+}
+
+TEST(Inequality, incorrect) {
+	Plate plate1, plate2;
+	plate1++;
+	ASSERT_TRUE(plate1 != plate2);
 }
 
 TEST(Equality, correct) {

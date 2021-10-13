@@ -15,6 +15,7 @@ int dialog(const char* msgs[], int N) {
 }
 
 int D_AddContact(Plate& plate) {
+	std::cout << "Enter x,y and type(0/1)" << std::endl;
 	std::cin >> plate;
 	return 1;
 }

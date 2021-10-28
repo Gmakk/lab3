@@ -16,11 +16,22 @@ int dialog(const char* msgs[], int N) {
 
 int D_AddContact(Plate& plate) {
 	std::cout << "Enter x,y and type(0/1)" << std::endl;
-	std::cin >> plate;
+	try {
+		std::cin >> plate;
+	}
+	catch (std::exception ex) {
+		std::cout << ex.what() << std::endl;
+	}
 	return 1;
 }
 int D_Info(Plate& plate) {
-	std::cout << plate;
+	plate.showInfo(std::cout);
+	/*try {//вывод без пояcнения
+		std::cout << plate;
+	}
+	catch (std::exception ex) {
+		std::cout << ex.what() << std::endl;
+	}*/
 	return 1;
 }
 int D_Correct(Plate& plate) {
@@ -57,7 +68,7 @@ int D_Group(Plate& plate) {
 	std::cout << "Enter 0 for output, 1 for entrance, another number to exit: " << std::endl;
 	getValue(number);
 	if (number == 1 || number == 0)
-		plate.showGroup(number);
+		plate.showGroup(number,std::cout);
 	return 1;
 }
 int D_Length(Plate& plate) {
